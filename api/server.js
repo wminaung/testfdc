@@ -1,6 +1,6 @@
 const fs = require("fs");
 const http = require("http");
-const { createDateString } = require("./util");
+const { createDateString } = require("../util");
 
 let users = [
   {
