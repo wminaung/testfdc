@@ -1,4 +1,4 @@
-const url = "https://backend-nu-navy.vercel.app/data";
+const url = "https://testfdc.vercel.app/data";
 const fetchUserData = async () => {
   const response = await fetch(url);
   const data = await response.json();
@@ -136,7 +136,7 @@ const handleFileUpload = async () => {
   const fileInput = document.getElementById("file");
 
   console.log(fileInput.files[0]);
-  const fileUploadUrl = "https://backend-nu-navy.vercel.app/fileUpload";
+  const fileUploadUrl = "https://testfdc.vercel.app/fileUpload";
   const response = await fetch(fileUploadUrl, {
     method: "POST",
 
