@@ -1,4 +1,4 @@
-const url = "http://localhost:3000/data";
+const url = "https://backend-ximy.vercel.app/data";
 const fetchUserData = async () => {
   const response = await fetch(url);
   const data = await response.json();
@@ -136,7 +136,7 @@ const handleFileUpload = async () => {
   const fileInput = document.getElementById("file");
 
   console.log(fileInput.files[0]);
-  const fileUploadUrl = "http://localhost:3000/fileUpload";
+  const fileUploadUrl = "https://backend-ximy.vercel.app/fileUpload";
   const response = await fetch(fileUploadUrl, {
     method: "POST",
 
