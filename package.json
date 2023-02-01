@@ -2,7 +2,10 @@
   "name": "win-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "event.js",
+  "main": "server.js",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "start": "nodemon server.js"
   },
