@@ -1,6 +1,7 @@
 const fs = require("fs");
 const http = require("http");
 const { createDateString } = require("./util");
+require("dotenv").config();
 
 let users = [
   {
@@ -49,7 +50,6 @@ const server = http.createServer((req, res) => {
         data += chunk;
       });
       req.on("end", () => {
-        console.log(data);
         users.push({
           ...JSON.parse(data),
           id: users.length + 1,
@@ -72,7 +72,6 @@ const server = http.createServer((req, res) => {
       });
       req.on("end", () => {
         data = JSON.parse(data);
-        console.log(data);
 
         const foundUser = users.find(
           (user) => user.id === Number.parseInt(data.id)
@@ -111,7 +110,6 @@ const server = http.createServer((req, res) => {
     }
   } else if (url === "/fileUpload") {
     if (req.method === "POST") {
-      console.log(req);
       if (!req.headers["content-type"]) {
         res.writeHead(404, { "Content-Type": "application/json" });
         res.write(JSON.stringify({ status: "file is not insert" }));
@@ -133,9 +131,10 @@ const server = http.createServer((req, res) => {
     return res.end();
   }
 });
+const PORT = process.env.PORT || 3000;
 
-server.listen(443, () => {
-  console.log("Server is running on port 443");
+server.listen(PORT, () => {
+  console.log("Server is running on port " + PORT);
 });
 //libary
 //it can save many file
