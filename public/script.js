@@ -1,4 +1,4 @@
-const url = "http://localhost:3000/data";
+const url = "https://msquarefdc.onrender.com/data";
 const fetchUserData = async () => {
   const response = await fetch(url);
   const data = await response.json();
@@ -136,7 +136,7 @@ const handleFileUpload = async () => {
   const fileInput = document.getElementById("file");
 
   console.log(fileInput.files[0]);
-  const fileUploadUrl = "http://localhost:3000/fileUpload";
+  const fileUploadUrl = "https://msquarefdc.onrender.com/fileUpload";
   const response = await fetch(fileUploadUrl, {
     method: "POST",
 
