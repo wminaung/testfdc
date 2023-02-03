@@ -139,6 +139,21 @@ const server = http.createServer((req, res) => {
       res.writeHead(200, { "Content-Type": "application/json" });
       return res.end(JSON.stringify(filesArray));
     });
+  } else if (url === "/image") {
+    fs.readdir("files", (err, files) => {
+      if (err) {
+        console.log(err);
+        return res.end(JSON.stringify("error is happened to readdir"));
+      }
+      let filesArray = [];
+      files.forEach((file) => {
+        filesArray.push(file);
+      });
+
+      res.writeHead(200, { "Content-Type": "image/jpg" });
+      const img = fs.readFileSync(`files/${filesArray[0]}`);
+      return res.end(img);
+    });
   } else {
     res.writeHead(404);
     return res.end();
