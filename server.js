@@ -152,6 +152,9 @@ const server = http.createServer((req, res) => {
         }
         filesArray.push(file);
       });
+      if (filesArray.length === 0) {
+        return res.end(JSON.stringify("There is no image"));
+      }
 
       res.writeHead(200, { "Content-Type": "image/jpg" });
       const img = fs.readFileSync(`files/${filesArray[filesArray.length - 1]}`);
