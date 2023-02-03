@@ -33,7 +33,17 @@ let users = [
 const server = http.createServer((req, res) => {
   let url = req.url;
   console.log(url);
-  if (url === "/data") {
+  if (url === "/home" || url === "/home/index.html") {
+    const data = fs.readFileSync("public/index.html");
+    res.writeHead(200, { "Content-Type": "text/html" });
+    res.write(data);
+    return res.end();
+  } else if (url === "/home/script.js") {
+    const data = fs.readFileSync("public/script.js");
+    res.writeHead(200, { "Content-Type": "text/javascript" });
+    res.write(data);
+    return res.end();
+  } else if (url === "/data") {
     let data = "";
     if (req.method === "POST") {
       req.on("data", (chunk) => {
