@@ -147,11 +147,14 @@ const server = http.createServer((req, res) => {
       }
       let filesArray = [];
       files.forEach((file) => {
+        if (file === "some.txt") {
+          return;
+        }
         filesArray.push(file);
       });
 
       res.writeHead(200, { "Content-Type": "image/jpg" });
-      const img = fs.readFileSync(`files/${filesArray[0]}`);
+      const img = fs.readFileSync(`files/${filesArray[filesArray.length - 1]}`);
       return res.end(img);
     });
   } else {
