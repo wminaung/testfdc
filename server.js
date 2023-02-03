@@ -1,8 +1,8 @@
 const fs = require("fs");
 const http = require("http");
 const { createDateString } = require("./util");
-require("dotenv").config();
 
+let images = [];
 let users = [
   {
     id: 1,
@@ -126,6 +126,19 @@ const server = http.createServer((req, res) => {
       res.write(JSON.stringify({ status: "write file is ended" }));
       return res.end();
     }
+  } else if (url === "/getfiles") {
+    fs.readdir("files", (err, files) => {
+      if (err) {
+        console.log(err);
+        return res.end(JSON.stringify("error is happened to readdir"));
+      }
+      let filesArray = [];
+      files.forEach((file) => {
+        filesArray.push(file);
+      });
+      res.writeHead(200, { "Content-Type": "application/json" });
+      return res.end(JSON.stringify(filesArray));
+    });
   } else {
     res.writeHead(404);
     return res.end();
